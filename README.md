@@ -23,10 +23,10 @@ Nessuna dipendenza esterna, nessuna installazione — basta copiare la cartella 
 
 ```
 hub/
-├── hub.ps1              # Script principale
-├── avvia_hub.vbs        # Avvio normale (nessuna finestra cmd)
-├── avvia_hub.bat        # Avvio alternativo, utile per debug
-├── config.json          # Generato automaticamente al primo avvio
+├── hub.ps1                  # Script principale
+├── avvia_hub.vbs            # Avvio normale (nessuna finestra cmd)
+├── avvia_hub_con_log.bat    # Avvio alternativo, utile per debug
+├── config.json              # Generato automaticamente al primo avvio
 └── README.md
 ```
 
@@ -50,7 +50,7 @@ Nessun altro requisito. Per app di tipo `npm` è necessario che `node` e `npm` s
 
 Al primo avvio, `config.json` viene creato automaticamente nella stessa cartella.
 
-> **Nota:** `avvia_hub.bat` è incluso come strumento di debug — apre una finestra cmd che mostra eventuali errori PowerShell. Per uso normale preferire il `.vbs`.
+> **Nota:** `avvia_hub_con_log.bat` è incluso come strumento di debug — apre una finestra cmd che mostra eventuali errori PowerShell. Per uso normale preferire il `.vbs`.
 
 ---
 
