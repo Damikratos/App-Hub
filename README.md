@@ -11,7 +11,7 @@ Nessuna dipendenza esterna, nessuna installazione — basta copiare la cartella 
 
 - Interfaccia grafica in stile terminale (tema ambra su nero, font monospaziato)
 - Aggiunta, modifica e rimozione di app dalla GUI, senza toccare file di configurazione manualmente
-- Supporto per app avviate tramite `.bat`, `.ps1` o `npm start`
+- Supporto per app avviate tramite `.bat`, `.ps1`, `npm start` o eseguibile diretto (`.exe`)
 - Descrizione opzionale per ogni app, visibile sotto il nome
 - Lista ordinata alfabeticamente automaticamente
 - Configurazione salvata in un `config.json` portabile nella stessa cartella
@@ -74,8 +74,8 @@ Clic su **[ + AGGIUNGI ]** e compilare i campi:
 |-------|-------------|
 | Nome | Nome visualizzato nell'hub |
 | Percorso cartella | Percorso assoluto della cartella dell'app (es. `F:\MiaApp`) |
-| Tipo avvio | `bat`, `ps1` oppure `npm` |
-| File avvio | Nome del file `.bat` o `.ps1` (es. `avvio.bat`) — **lasciare vuoto se tipo è `npm`** |
+| Tipo avvio | `bat`, `ps1`, `npm` oppure `exe` |
+| File avvio | Nome del file (es. `avvio.bat` o `app.exe`) — **lasciare vuoto se tipo è `npm`** |
 | Descrizione | Testo opzionale mostrato sotto il nome |
 
 #### Tipi di avvio supportati
@@ -85,6 +85,7 @@ Clic su **[ + AGGIUNGI ]** e compilare i campi:
 | `bat` | Esegue il file `.bat` nella cartella dell'app |
 | `ps1` | Esegue il file `.ps1` con `-ExecutionPolicy Bypass` |
 | `npm` | Apre una finestra cmd, entra nella cartella e lancia `npm start` |
+| `exe` | Esegue direttamente il file `.exe` specificato nella cartella dell'app |
 
 ### Modificare un'app
 

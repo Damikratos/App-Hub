@@ -48,6 +48,7 @@ function Start-App {
         "bat" { Start-Process cmd        -ArgumentList "/c `"$($App.start_file)`""                            -WorkingDirectory $App.app_path }
         "ps1" { Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$($App.start_file)`"" -WorkingDirectory $App.app_path }
         "npm" { Start-Process cmd        -ArgumentList "/k cd /d `"$($App.app_path)`" && npm start" }
+        "exe" { Start-Process $App.start_file                                                                 -WorkingDirectory $App.app_path }
     }
 }
 
@@ -269,8 +270,8 @@ $BtnAdd.Add_Click({
 
     $script:tbNome  = Add-FormRow $FormPanel "Nome"
     $script:tbPath  = Add-FormRow $FormPanel "Percorso cartella" "F:\"
-    $script:tbTipo  = Add-FormRow $FormPanel "Tipo avvio: bat, ps1 oppure npm"
-    $script:tbFile  = Add-FormRow $FormPanel "File avvio (es. avvio.bat) -- lascia vuoto se npm"
+    $script:tbTipo  = Add-FormRow $FormPanel "Tipo avvio: bat, ps1, npm oppure exe"
+    $script:tbFile  = Add-FormRow $FormPanel "File avvio (es. avvio.bat, app.exe) -- lascia vuoto se npm"
     $script:tbDesc  = Add-FormRow $FormPanel "Descrizione (opzionale)"
 
     $row     = [System.Windows.Controls.StackPanel]::new()
@@ -433,8 +434,8 @@ function Show-EditField {
         $currentFile = if ($targetApp.start_file) { Split-Path -Leaf $targetApp.start_file } else { "" }
         $FormPanel.Children.Add((New-TB "File attuale :" $C_GHOST 11)) | Out-Null
         $FormPanel.Children.Add((New-Input $currentFile $true)) | Out-Null
-        $script:efInputs["file"] = Add-FormRow $FormPanel "Nuovo file (es. avvio.bat) -- lascia vuoto se npm" $currentFile
-        $script:efInputs["tipo"] = Add-FormRow $FormPanel "Tipo avvio: bat, ps1 oppure npm" $targetApp.start_type
+        $script:efInputs["file"] = Add-FormRow $FormPanel "Nuovo file (es. avvio.bat, app.exe) -- lascia vuoto se npm" $currentFile
+        $script:efInputs["tipo"] = Add-FormRow $FormPanel "Tipo avvio: bat, ps1, npm oppure exe" $targetApp.start_type
     }
 
     if ($Field -eq "descrizione") {
@@ -445,8 +446,8 @@ function Show-EditField {
         $currentFile = if ($targetApp.start_file) { Split-Path -Leaf $targetApp.start_file } else { "" }
         $script:efInputs["nome"]        = Add-FormRow $FormPanel "Nome"               $targetApp.name
         $script:efInputs["percorso"]    = Add-FormRow $FormPanel "Percorso"           $targetApp.app_path
-        $script:efInputs["tipo"]        = Add-FormRow $FormPanel "Tipo avvio: bat, ps1 oppure npm" $targetApp.start_type
-        $script:efInputs["file"]        = Add-FormRow $FormPanel "File avvio (es. avvio.bat) -- lascia vuoto se npm" $currentFile
+        $script:efInputs["tipo"]        = Add-FormRow $FormPanel "Tipo avvio: bat, ps1, npm oppure exe" $targetApp.start_type
+        $script:efInputs["file"]        = Add-FormRow $FormPanel "File avvio (es. avvio.bat, app.exe) -- lascia vuoto se npm" $currentFile
         $script:efInputs["descrizione"] = Add-FormRow $FormPanel "Descrizione"        $targetApp.description
     }
 
